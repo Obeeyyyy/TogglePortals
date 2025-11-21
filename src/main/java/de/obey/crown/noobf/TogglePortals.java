@@ -5,6 +5,7 @@ import de.obey.crown.core.data.plugin.Messanger;
 import de.obey.crown.listener.CoreStart;
 import de.obey.crown.listener.Portal;
 import lombok.Getter;
+import org.bstats.bukkit.Metrics;
 import org.bukkit.Bukkit;
 import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
@@ -33,6 +34,12 @@ public final class TogglePortals extends JavaPlugin {
         final TogglePortalCommand togglePortalCommand = new TogglePortalCommand(pluginConfig, messanger);
         getCommand("toggleportal").setExecutor(togglePortalCommand);
         getCommand("toggleportal").setTabCompleter(togglePortalCommand);
+
+        initializeBStats();
+    }
+
+    private void initializeBStats() {
+        new Metrics(this, 28078);
     }
 
     @Override
