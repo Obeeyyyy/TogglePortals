@@ -1,0 +1,11 @@
+name: TogglePortals
+version: 1.0.2
+main: de.obey.crown.noobf.TogglePortals
+website: dsg.gg/crownplugins
+author: Obey
+folia-supported: true
+
+api-version: '1.20'
+
+commands:
+  toggleportal:

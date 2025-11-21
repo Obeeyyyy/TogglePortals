@@ -1,0 +1,6 @@
+messages: # leave string empty if you do not want to send a message
+  portal-disabled: '%prefix% The %type%%white% is currently &c&odisabled%white%!'
+  toggled: "%prefix%%accent% %player%%white% has %state%%white% the %type%%white%."
+  nether: "&c&lɴᴇᴛʜᴇʀ"
+  end: "&5&lᴇɴᴅ"
+
