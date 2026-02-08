@@ -16,34 +16,36 @@ public final class TogglePortals extends JavaPlugin {
     private PluginConfig pluginConfig;
     private Messanger messanger;
 
-
     public static TogglePortals getInstance() {
         return getPlugin(TogglePortals.class);
     }
 
     @Override
-    public void onEnable() {
+    public void onLoad() {
+        super.onLoad();
+
         pluginConfig = new PluginConfig(this);
         messanger = pluginConfig.getMessanger();
+    }
 
+    @Override
+    public void onEnable() {
+        getServer().getPluginManager().registerEvents(new CoreStart(this), this);
+
+        initializeBStats();
+    }
+
+    public void load() {
         final PluginManager pluginManager = getServer().getPluginManager();
-
-        pluginManager.registerEvents(new CoreStart(this), this);
         pluginManager.registerEvents(new Portal(pluginConfig, messanger), this);
 
         final TogglePortalCommand togglePortalCommand = new TogglePortalCommand(pluginConfig, messanger);
         getCommand("toggleportal").setExecutor(togglePortalCommand);
         getCommand("toggleportal").setTabCompleter(togglePortalCommand);
 
-        initializeBStats();
     }
 
     private void initializeBStats() {
         new Metrics(this, 28078);
-    }
-
-    @Override
-    public void onDisable() {
-        // Plugin shutdown logic
     }
 }

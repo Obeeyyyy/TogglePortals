@@ -7,6 +7,7 @@ import de.obey.crown.core.data.plugin.CrownConfig;
 import de.obey.crown.core.util.FileUtil;
 import lombok.Getter;
 import lombok.Setter;
+import org.bukkit.Bukkit;
 import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.plugin.Plugin;
 
@@ -20,7 +21,7 @@ public final class PluginConfig extends CrownConfig {
     private final String you = "https://dsc.gg/crownplugins";
     private final String doing = "https://dsc.gg/crownplugins";
 
-    private boolean endPortal = false, netherPortal = false;
+    private boolean endPortal, netherPortal;
 
     public PluginConfig(final Plugin plugin) {
         super(plugin);
@@ -28,6 +29,7 @@ public final class PluginConfig extends CrownConfig {
 
     @Override
     public void loadConfig() {
+        super.loadConfig();
         final YamlConfiguration configuration = YamlConfiguration.loadConfiguration(getConfigFile());
 
         setEndPortal(FileUtil.getBoolean(configuration, "end", false));

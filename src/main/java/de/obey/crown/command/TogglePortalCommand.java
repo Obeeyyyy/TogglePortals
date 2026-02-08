@@ -6,7 +6,6 @@ package de.obey.crown.command;
 import de.obey.crown.core.data.plugin.Messanger;
 import de.obey.crown.noobf.PluginConfig;
 import de.obey.crown.noobf.TogglePortals;
-import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
@@ -17,14 +16,8 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-@RequiredArgsConstructor @NonNull
+@RequiredArgsConstructor
 public final class TogglePortalCommand implements CommandExecutor, TabCompleter {
-
-    private final String hi = "https://dsc.gg/crownplugins";
-    private final String how = "https://dsc.gg/crownplugins";
-    private final String are = "https://dsc.gg/crownplugins";
-    private final String you = "https://dsc.gg/crownplugins";
-    private final String doing = "https://dsc.gg/crownplugins";
 
     private final PluginConfig pluginConfig;
     private final Messanger messanger;
@@ -38,6 +31,16 @@ public final class TogglePortalCommand implements CommandExecutor, TabCompleter 
         }
 
         if(args.length == 1) {
+            if(args[0].equalsIgnoreCase("reload")) {
+                pluginConfig.reload();
+
+                messanger.broadcastMessage("plugin-reloaded",
+                        new String[]{"plugin"},
+                        TogglePortals.getInstance().getName());
+
+                return false;
+            }
+
             if(args[0].equalsIgnoreCase("end")) {
                 pluginConfig.setEndPortal(!pluginConfig.isEndPortal());
                 pluginConfig.saveConfig();
@@ -70,9 +73,13 @@ public final class TogglePortalCommand implements CommandExecutor, TabCompleter 
     public List<String> onTabComplete(CommandSender sender, Command command, String s, String[] args) {
         final ArrayList<String> list = new ArrayList<>();
 
+        if(!sender.hasPermission("command.toggleportals"))
+            return list;
+
         if(args.length == 1) {
             list.add("nether");
             list.add("end");
+            list.add("reload");
         }
 
         final String argument = args[args.length - 1];

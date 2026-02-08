@@ -19,6 +19,7 @@ public final class CoreStart implements Listener {
     @EventHandler
     public void on(final CoreStartEvent event) {
         event.sendStartupMessage(togglePortals);
+        togglePortals.load();
     }
 
 }
