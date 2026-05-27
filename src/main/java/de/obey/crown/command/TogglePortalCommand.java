@@ -45,7 +45,7 @@ public final class TogglePortalCommand implements CommandExecutor, TabCompleter 
                 pluginConfig.setEndPortal(!pluginConfig.isEndPortal());
                 pluginConfig.saveConfig();
 
-                final String state = pluginConfig.isEndPortal() ? "§a§lᴀᴄᴛɪᴠᴀᴛᴇᴅ" : "§c§lᴅᴇᴀᴄᴛɪᴠᴀᴛᴇᴅ";
+                final String state = pluginConfig.isEndPortal() ? messanger.getMessage("activated") : messanger.getMessage("deactivated");
                 messanger.broadcastMessage("toggled",
                         new String[]{"state", "player", "type"},
                         state, sender.getName(), messanger.getMessage("end"));
@@ -57,7 +57,7 @@ public final class TogglePortalCommand implements CommandExecutor, TabCompleter 
                 pluginConfig.setNetherPortal(!pluginConfig.isNetherPortal());
                 pluginConfig.saveConfig();
 
-                final String state = pluginConfig.isNetherPortal() ? "§a§lᴀᴄᴛɪᴠᴀᴛᴇᴅ" : "§c§lᴅᴇᴀᴄᴛɪᴠᴀᴛᴇᴅ";
+                final String state = pluginConfig.isNetherPortal() ? messanger.getMessage("activated") : messanger.getMessage("deactivated");;
 
                 messanger.broadcastMessage("toggled",
                         new String[]{"state", "player", "type"},
