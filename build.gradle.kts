@@ -24,10 +24,12 @@ repositories {
     mavenCentral()
     mavenLocal()
     maven("https://repo.papermc.io/repository/maven-public/")
+    maven("https://maven.canvasmc.io/snapshots")
 }
 
 dependencies {
     compileOnly("io.papermc.paper:paper-api:1.20.1-R0.1-SNAPSHOT")
+    compileOnly("io.canvasmc.canvas:canvas-api:1.21.11-R0.1-SNAPSHOT")
     compileOnly("de.obey.crown.core:CrownCore:1.0.0")
 
     compileOnly("org.projectlombok:lombok:1.18.32")

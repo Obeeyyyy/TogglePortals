@@ -2,6 +2,8 @@ package de.obey.crown.noobf;
 
 import de.obey.crown.command.TogglePortalCommand;
 import de.obey.crown.core.data.plugin.Messanger;
+import de.obey.crown.core.util.Scheduler;
+import de.obey.crown.listener.CanvasPortal;
 import de.obey.crown.listener.CoreStart;
 import de.obey.crown.listener.Portal;
 import lombok.Getter;
@@ -38,6 +40,9 @@ public final class TogglePortals extends JavaPlugin {
     public void load() {
         final PluginManager pluginManager = getServer().getPluginManager();
         pluginManager.registerEvents(new Portal(pluginConfig, messanger), this);
+
+        if (Scheduler.isCanvas)
+            pluginManager.registerEvents(new CanvasPortal(pluginConfig, messanger), this);
 
         final TogglePortalCommand togglePortalCommand = new TogglePortalCommand(pluginConfig, messanger);
         getCommand("toggleportal").setExecutor(togglePortalCommand);
